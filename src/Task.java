@@ -1,23 +1,37 @@
 import java.util.Objects;
 
 public class Task {
-    protected int id;
-    protected String name;
-    protected String description;
-    protected Status status;
+
+    private static int taskCounter = 0;
+    private int id;
+    private String name;
+    private String description;
+    private Status status;
 
     public Task(String name, String description) {
+        this.id = ++taskCounter;
         this.name = name;
         this.description = description;
         this.status = Status.NEW;
     }
 
-    public void setId(int id) {
+    public Task(int id, String name, String description, Status status) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.status = status;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public Status getStatus() {
@@ -27,7 +41,7 @@ public class Task {
     @Override
     public boolean equals(Object obj) {
         if(obj == this) return true;
-        if(obj == null || !(obj instanceof Task)) return false;
+        if(!(obj instanceof Task)) return false;
         Task task = (Task) obj;
         return task.id == this.id;
     }
