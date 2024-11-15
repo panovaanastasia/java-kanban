@@ -1,3 +1,7 @@
+package controllers;
+
+import model.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +17,8 @@ public class TaskManager {
         epics = new HashMap<>();
     }
 
-    public HashMap<Integer, Task> getTasks() {
-        return tasks;
+    public ArrayList<Task> getTasks() {
+        return new ArrayList<>(tasks.values());
     }
 
     public void removeTasks() {
@@ -38,8 +42,8 @@ public class TaskManager {
         tasks.remove(id);
     }
 
-    public HashMap<Integer, Subtask> getSubtasks() {
-        return subtasks;
+    public ArrayList<Subtask> getSubtasks() {
+        return new ArrayList<>(subtasks.values());
     }
 
     public void removeSubtasks() {
@@ -83,8 +87,8 @@ public class TaskManager {
         }
     }
 
-    public HashMap<Integer, Epic> getEpics() {
-        return epics;
+    public ArrayList<Epic> getEpics() {
+        return new ArrayList<>(epics.values());
     }
 
     public void removeEpics() {

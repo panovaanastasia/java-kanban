@@ -1,3 +1,8 @@
+import controllers.TaskManager;
+import model.Epic;
+import model.Status;
+import model.Subtask;
+import model.Task;
 
 public class Main {
 
@@ -24,15 +29,15 @@ public class Main {
         Subtask subtask3 = new Subtask("подзадача", "из 2 эпика", 6);
         manager.createSubtask(subtask3);
 
-        for(Task task: manager.getTasks().values()) {
+        for(Task task: manager.getTasks()) {
             System.out.println(task);
         }
 
-        for(Subtask subtask: manager.getSubtasks().values()) {
+        for(Subtask subtask: manager.getSubtasks()) {
             System.out.println(subtask);
         }
 
-        for(Epic epic: manager.getEpics().values()) {
+        for(Epic epic: manager.getEpics()) {
             System.out.println(epic);
         }
 
@@ -46,16 +51,16 @@ public class Main {
         System.out.println(manager.getEpicById(3));
 
         manager.removeSubtaskById(4);
-        for(Subtask subtask: manager.getSubtasks().values()) {
+        for(Subtask subtask: manager.getSubtasks()) {
             System.out.println(subtask);
         }
         System.out.println(manager.getEpicById(3));
 
         manager.removeEpicById(6);
-        for(Subtask subtask: manager.getSubtasks().values()) {
+        for(Subtask subtask: manager.getSubtasks()) {
             System.out.println(subtask);
         }
-        for(Epic epic: manager.getEpics().values()) {
+        for(Epic epic: manager.getEpics()) {
             System.out.println(epic);
         }
     }
