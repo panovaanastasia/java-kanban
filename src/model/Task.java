@@ -1,17 +1,19 @@
 package model;
 
+import controllers.TaskManager;
+
 import java.util.Objects;
 
 public class Task {
 
-    private static int taskCounter = 0;
-    private int id;
-    private String name;
-    private String description;
-    private Status status;
+
+    protected int id;
+    protected String name;
+    protected String description;
+    protected Status status;
 
     public Task(String name, String description) {
-        this.id = ++taskCounter;
+        this.id = TaskManager.getTaskCount();
         this.name = name;
         this.description = description;
         this.status = Status.NEW;
