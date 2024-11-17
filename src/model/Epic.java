@@ -1,14 +1,16 @@
 package model;
 
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Epic extends Task {
-    private List<Subtask> subtasks;
+    private HashMap<Integer, Subtask> subtasks;
 
     public Epic(String name, String description) {
         super(name, description);
-        this.subtasks = new ArrayList<>();
+        this.subtasks = new HashMap<>();
     }
 
     public Epic(int id, String name, String description) {
@@ -16,7 +18,7 @@ public class Epic extends Task {
     }
 
     public List<Subtask> getSubtasks() {
-        return subtasks;
+        return new ArrayList<>(subtasks.values());
     }
 
     public void clearSubtasks() {
@@ -24,17 +26,22 @@ public class Epic extends Task {
     }
 
     public void addSubtask(Subtask subtask) {
-        if(!subtasks.contains(subtask)) subtasks.add(subtask);
+        if(!subtasks.containsKey(subtask.getId())) subtasks.put(subtask.getId(),subtask);
     }
 
     public void removeSubtask(Subtask subtask) {
-        subtasks.remove(subtask);
+        subtasks.remove(subtask.getId());
+    }
+
+    public void updateSubtask(Subtask subtask) {
+        if(!subtasks.containsKey(subtask.getId())) return;
+        subtasks.put(subtask.getId(), subtask);
     }
 
     public void updateStatus() {
         status = Status.NEW;
         boolean allDone = true;
-        for(Subtask subtask : subtasks) {
+        for(Subtask subtask : subtasks.values()) {
             if(subtask.getStatus() != Status.DONE) {
                 allDone = false;
                 break;
@@ -44,7 +51,7 @@ public class Epic extends Task {
             status = Status.DONE;
         } else {
             boolean anyInProgress = false;
-            for(Subtask subtask : subtasks) {
+            for(Subtask subtask : subtasks.values()) {
                 if(subtask.getStatus() == Status.IN_PROGRESS) {
                     anyInProgress = true;
                     break;
