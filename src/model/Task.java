@@ -1,6 +1,6 @@
 package model;
 
-import controllers.TaskManager;
+import controllers.InMemoryTaskManager;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public class Task {
     protected Status status;
 
     public Task(String name, String description) {
-        this.id = TaskManager.getTaskCount();
+        this.id = InMemoryTaskManager.getTaskCount();
         this.name = name;
         this.description = description;
         this.status = Status.NEW;
