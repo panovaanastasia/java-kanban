@@ -40,6 +40,7 @@ public class Epic extends Task {
 
     public void updateStatus() {
         status = Status.NEW;
+        if(subtasks.size() == 0) return;
         boolean allDone = true;
         for(Subtask subtask : subtasks.values()) {
             if(subtask.getStatus() != Status.DONE) {
