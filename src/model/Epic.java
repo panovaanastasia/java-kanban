@@ -15,6 +15,7 @@ public class Epic extends Task {
 
     public Epic(int id, String name, String description) {
         super(id, name, description, Status.NEW);
+        this.subtasks = new HashMap<>();
     }
 
     public List<Subtask> getSubtasks() {
@@ -40,6 +41,7 @@ public class Epic extends Task {
 
     public void updateStatus() {
         status = Status.NEW;
+        if(subtasks.size() == 0) return;
         boolean allDone = true;
         for(Subtask subtask : subtasks.values()) {
             if(subtask.getStatus() != Status.DONE) {
